@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './scss/index.scss'
 
+import MusicList from './components/MusicList'
 class App extends Component {
   constructor() {
     super()
@@ -10,7 +11,7 @@ class App extends Component {
     }
   }
 
-  increment() {
+  increment = () => {
     this.setState({
       count: this.state.count + 1
     })
@@ -26,6 +27,12 @@ class App extends Component {
 {/*
         <button onClick={() => this.increment(1)}>Increment 1</button>
         <button onClick={() => this.increment(2)}>Increment 2</button> */}
+
+        <MusicList />
+        <hr />
+        <MusicList />
+        <hr />
+        <MusicList />
       </>
     )
   }
