@@ -23,7 +23,10 @@ class User extends Component {
             onClick={() => this.props.editRow(user.id, true)}
           >Edit</button>
 
-          <button className="btn btn-danger">Delete</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => this.props.deleteUser(user.id)}
+          >Delete</button>
         </td>
       </tr>
     )
@@ -35,6 +38,16 @@ class User extends Component {
       editingUser: {
         ...this.state.editingUser,
         fullName: value
+      }
+    })
+  }
+
+  changeGender = event => {
+    console.log(event.target.value)
+    this.setState({
+      editingUser: {
+        ...this.state.editingUser,
+        gender: event.target.value
       }
     })
   }
@@ -54,7 +67,7 @@ class User extends Component {
         </td>
 
         <td>
-          <select className="form-control" value={user.gender}>
+          <select className="form-control" value={user.gender} onChange={this.changeGender}>
             <option value="male">Nam</option>
             <option value="felmale">Nữ</option>
           </select>
@@ -70,6 +83,26 @@ class User extends Component {
         </td>
       </tr>
     )
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log('---UNSAFE_componentWillReceiveProps', {
+      nextProps,
+      oldProps: this.props
+    })
+
+    this.setState({
+      editingUser: {
+        ...this.state.editingUser,
+        ...nextProps.user
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    console.log('---------componentWillUnmount---start')
+    console.log(this.props.user)
+    console.log('---------componentWillUnmount---end')
   }
 
   render() {
