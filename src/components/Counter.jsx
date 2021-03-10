@@ -13,6 +13,10 @@ class Counter extends React.Component {
     })
   }
 
+  componentDidMount() {
+    console.log('---context:', this.context)
+  }
+
   render() {
     return (
       <div>
@@ -31,5 +35,7 @@ class Counter extends React.Component {
     )
   }
 }
+
+Counter.contextType = MyGlobalContext
 
 export default Counter
