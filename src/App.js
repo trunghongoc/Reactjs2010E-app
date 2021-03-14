@@ -1,10 +1,13 @@
-import React, { useRef } from 'react'
+import React, { useEffect } from 'react'
 import './scss/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Home from './pages/Home'
-import Login from './pages/Login'
-import PostDetail from './pages/PostDetail'
+import store from './redux/store'
+import { Provider } from 'react-redux'
+
+import { router } from './router'
+
+import BackgroundApp from './components/BackgroundApp'
 
 import {
   BrowserRouter,
@@ -14,28 +17,32 @@ import {
 } from "react-router-dom"
 
 const App = () => {
-
   return (
-    <>
+    <Provider store={store}>
       <BrowserRouter>
         <Link to="/">go to home</Link>
         <Link to="/login">go to login</Link>
 
         <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-
-          <Route path="/login">
-            <Login />
-          </Route>
-
-          <Route path="/posts/:id">
-            <PostDetail />
-          </Route>
+          {
+            router.map((CurrentRoute, index) => {
+              return (
+                <Route
+                  path={CurrentRoute.path}
+                  exact={CurrentRoute.exact}
+                  key={index}
+                >
+                  {CurrentRoute.Component}
+                </Route>
+              )
+            })
+          }
         </Switch>
+
+        <BackgroundApp />
       </BrowserRouter>
-    </>
+
+    </Provider>
   )
 }
 

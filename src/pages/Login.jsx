@@ -1,9 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+import { useDispatch } from 'react-redux'
+import { setUser } from './../redux/state/user'
 
 const Login = () => {
+  const user = useSelector(store => store.user)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    console.log('----user:', user)
+  }, [user])
 
   const handleOnChangePassword = event => {
     setPassword(event.target.value)
@@ -21,6 +34,12 @@ const Login = () => {
       .then(response => {
         console.log('---response:', response)
         const user = response.data;
+
+        dispatch(
+          setUser(user)
+        )
+
+        history.push('/')
       })
       .catch(error => {
         alert('hãy nhập lại')
