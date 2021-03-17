@@ -22,6 +22,7 @@ const App = () => {
       <BrowserRouter>
         <Link to="/">go to home</Link>
         <Link to="/login">go to login</Link>
+        <Link to="/posts">Go To Post List</Link>
 
         <Switch>
           {
