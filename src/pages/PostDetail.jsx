@@ -15,7 +15,7 @@ const PostDetail = () => {
 
   useEffect(() => {
     fetchPost(id)
-  }, [])
+  }, [id])
 
   return <>
     <h1>Post detail</h1>

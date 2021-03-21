@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, version } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
@@ -36,10 +36,6 @@ const Posts = () => {
     setCurrentPage(page)
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [currentPage, pageSize])
-
   const pagingNumber = useMemo(() => {
     const links = []
 
@@ -70,7 +66,7 @@ const Posts = () => {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [currentPage, pageSize])
 
   return (
     <div className="container">

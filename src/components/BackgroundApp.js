@@ -10,10 +10,11 @@ const BackgroundApp = () => {
     if (!user) {
       history.push('/login')
     }
-  }, [user])
+  }, [user, history])
 
   return (
     <>
+      <span></span>
     </>
   )
 }

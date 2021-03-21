@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './scss/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
